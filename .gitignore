@@ -1,0 +1,15 @@
+.DS_Store
+
+# Local Netlify folder
+.netlify
+
+.DS_Store
+code+files
+
+# Ignore all node_modules folders anywhere
+**/node_modules
+
+# Optional: ignore all package-lock.json files across all subprojects
+**/package-lock.json
+**/.env
+.env.local
