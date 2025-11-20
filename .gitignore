@@ -13,5 +13,3 @@ code+files
 **/package-lock.json
 **/.env
 .env.local
-
-frontend/dist/
