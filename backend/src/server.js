@@ -12,13 +12,29 @@ const PORT = process.env.PORT || 5001;
 const __dirname = path.resolve();
 
 // middleware
-if (process.env.NODE_ENV !== "production") {
-  app.use(
-    cors({
-      origin: "http://localhost:5173",
-    })
-  );
-}
+// if (process.env.NODE_ENV !== "production") {
+//   app.use(
+//     cors({
+//       origin: "http://localhost:5173",
+//     })
+//   );
+// }
+
+//dockerized cors fix
+const allowedOrigins = ["http://localhost:5173", "http://localhost:3000"];
+
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true,
+  })
+);
 
 app.use(express.json());
 app.use(rateLimiter);
